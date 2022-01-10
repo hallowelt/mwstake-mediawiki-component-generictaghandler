@@ -9,6 +9,7 @@
 		}
 	],
 	"require": {
+		"mwstake/mediawiki-componentloader": "dev-master",
 		"param-processor/param-processor": "1.10.*"
 	},
 	"require-dev": {
