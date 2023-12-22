@@ -8,7 +8,7 @@ return [
 	/**
 	 * @param MediaWikiServices $services
 	 */
-	'MWStakeTagFactory' => function( $services ) {
+	'MWStakeTagFactory' => static function ( $services ) {
 		return new TagFactory( $services );
 	}
 ];

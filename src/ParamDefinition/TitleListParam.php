@@ -5,7 +5,10 @@ namespace MWStake\MediaWiki\Component\GenericTagHandler\ParamDefinition;
 use MWStake\MediaWiki\Component\GenericTagHandler\Validator\TitleValidator;
 
 class TitleListParam extends \ParamProcessor\ParamDefinition {
+
+	/** @var string */
 	protected $delimiter = '|';
+	/** @var TitleValidator */
 	protected $validator = null;
 
 	protected function postConstruct() {
@@ -15,7 +18,7 @@ class TitleListParam extends \ParamProcessor\ParamDefinition {
 	/**
 	 * @return bool
 	 */
-	public function isList() : bool {
+	public function isList(): bool {
 		return true;
 	}
 }
