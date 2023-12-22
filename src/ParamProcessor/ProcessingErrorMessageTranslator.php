@@ -8,6 +8,7 @@ namespace MWStake\MediaWiki\Component\GenericTagHandler;
  */
 class ProcessingErrorMessageTranslator {
 
+	// phpcs:disable Generic.Files.LineLength.TooLong
 	/**
 	 * @var array
 	 */
@@ -33,6 +34,7 @@ class ProcessingErrorMessageTranslator {
 		"#(.*?) is not a valid parameter#" => 'mwstake-components-generictaghandler-validator-invalid-parameter',
 		"#Required parameter '(.*?)' is missing#" => 'mwstake-components-generictaghandler-validator-missing-required'
 	];
+	// phpcs:enable Generic.Files.LineLength.TooLong
 
 	/**
 	 *

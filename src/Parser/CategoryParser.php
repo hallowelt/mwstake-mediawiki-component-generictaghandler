@@ -19,7 +19,10 @@ class CategoryParser extends StringValueParser {
 			$title = Title::newFromText( $value );
 			if ( $title instanceof Title === false || $title->getNamespace() !== NS_CATEGORY ) {
 				throw new ParseException(
-					wfMessage( 'mwstake-components-generictaghandler-parser-error-invalid-category-title', $value )->plain()
+					wfMessage(
+						'mwstake-components-generictaghandler-parser-error-invalid-category-title',
+						$value
+					)->plain()
 				);
 			}
 		} else {
