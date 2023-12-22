@@ -10,7 +10,7 @@
 	],
 	"require": {
 		"composer/installers": "~1.0|~2",
-		"param-processor/param-processor": "1.10.*"
+		"param-processor/param-processor": "1.12.*"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "41.0.0",
