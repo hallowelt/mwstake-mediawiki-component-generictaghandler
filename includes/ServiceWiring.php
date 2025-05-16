@@ -8,7 +8,12 @@ return [
 	/**
 	 * @param MediaWikiServices $services
 	 */
-	'MWStakeTagFactory' => static function ( $services ) {
-		return new TagFactory( $services );
+	'MWStake.GenericTagHandler.TagFactory' => static function ( $services ) {
+		return new TagFactory(
+			$services->getHookContainer(),
+			new \MediaWiki\Config\GlobalVarConfig( 'mwsg' ),
+			$services->getObjectFactory(),
+			$services
+		);
 	}
 ];

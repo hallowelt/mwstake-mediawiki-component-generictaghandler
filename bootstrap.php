@@ -6,16 +6,27 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION' ) ) {
 
 define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.0' );
 
-$GLOBALS['wgHooks']['ParserFirstCallInit'][] = function ( \Parser $parser ) {
-	$factory = $this->getServices()->getService( 'MWStakeTagFactory' );
-		$tags = $factory->getAll();
-		foreach ( $tags as $tag ) {
-			$genericHandler = new MWStake\MediaWiki\Component\GenericTagHandler\GenericHandler( $tag );
-			$tagNames = $tag->getTagNames();
-			foreach ( $tagNames as $tagName ) {
-				$this->parser->setHook( $tagName, [ $genericHandler, 'handle' ] );
-			}
-		}
+MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
+	->register( 'generictaghandler', static function () {
 
-		return true;
-};
+		$GLOBALS['wgServiceWiringFiles'][] = __DIR__ . '/includes/ServiceWiring.php';
+		$GLOBALS['wgMessagesDirs']['mwstake-component-generictaghandler'] = __DIR__ . '/i18n';
+
+		$GLOBALS['wgHooks']['ParserFirstCallInit'][] = function ( \Parser $parser ) {
+			$services = \MediaWiki\MediaWikiServices::getInstance();
+			/** @var \MWStake\MediaWiki\Component\GenericTagHandler\TagFactory $factory */
+			$factory = $services->getService( 'MWStake.GenericTagHandler.TagFactory' );
+			$tags = $factory->getAll();
+			foreach ( $tags as $tag ) {
+				$renderer = $factory->makeTagRendererForTag( $tag );
+				$tagNames = $tag->getTagNames();
+				foreach ( $tagNames as $tagName ) {
+					$parser->setHook( $tagName, [ $renderer, 'doRender' ] );
+				}
+			}
+
+			return true;
+		};
+
+		$GLOBALS['mwsgGenericTagRegistry'] = [];
+	} );

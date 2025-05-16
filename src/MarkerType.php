@@ -17,6 +17,20 @@ namespace MWStake\MediaWiki\Component\GenericTagHandler;
  *     this interface, as it is not documented and injudicious use could smash
  *     private variables.**
  */
-class MarkerType {
+abstract class MarkerType {
+
+	/** @var string */
 	public const KEY = 'markerType';
+
+	/**
+	 * @return string
+	 */
+	abstract protected function getName(): string;
+
+	/**
+	 * @return string
+	 */
+	public function __toString(): string {
+		return $this->getName();
+	}
 }
