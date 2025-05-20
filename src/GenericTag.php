@@ -2,15 +2,12 @@
 
 namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
-use MWStake\MediaWiki\Component\FormEngine\FormLoaderSpecification;
-use MWStake\MediaWiki\Component\FormEngine\IFormSpecification;
-
 abstract class GenericTag implements ITag {
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getFormSpecification(): IFormSpecification|FormLoaderSpecification|null {
+	public function getClientTagSpecification(): ClientTagSpecification|null {
 		return null;
 	}
 

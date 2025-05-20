@@ -51,9 +51,7 @@ class TagRenderer {
 
 		$modules = $this->tag->getResourceLoaderModules();
 		if ( is_array( $modules ) ) {
-			foreach ( $modules as $moduleName ) {
-				$parser->getOutput()->addModules( $moduleName );
-			}
+			$parser->getOutput()->addModules( $modules );
 		}
 
 		$content = $this->tagHandler->getRenderedContent( $processedInput, $processedParams, $parser, $frame );
@@ -77,6 +75,7 @@ class TagRenderer {
 		} else {
 			$parser->setOptions( ParserOptions::newFromAnon() );
 		}
+		$parser->resetOutput();
 		return $this->doRender( $input, $args, $parser, $parser->getPreprocessor()->newFrame() );
 	}
 

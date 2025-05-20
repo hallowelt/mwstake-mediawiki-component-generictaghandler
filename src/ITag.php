@@ -3,8 +3,6 @@
 namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
 use MediaWiki\MediaWikiServices;
-use MWStake\MediaWiki\Component\FormEngine\FormLoaderSpecification;
-use MWStake\MediaWiki\Component\FormEngine\IFormSpecification;
 
 interface ITag {
 
@@ -27,9 +25,9 @@ interface ITag {
 	public function getParamDefinition(): ?array;
 
 	/**
-	 * @return IFormSpecification|FormLoaderSpecification|null
+	 * @return ClientTagSpecification|null
 	 */
-	public function getFormSpecification(): IFormSpecification|FormLoaderSpecification|null;
+	public function getClientTagSpecification(): ClientTagSpecification|null;
 
 	/**
 	 * @return array|null

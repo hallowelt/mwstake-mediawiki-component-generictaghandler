@@ -29,4 +29,7 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 		};
 
 		$GLOBALS['mwsgGenericTagRegistry'] = [];
+
+		$restFilePath = wfRelativePath( __DIR__ . '/rest-routes.json', $GLOBALS['IP'] );
+		$GLOBALS['wgRestAPIAdditionalRouteFiles'][] = $restFilePath;
 	} );
