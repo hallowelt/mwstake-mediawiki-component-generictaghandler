@@ -3,7 +3,7 @@
 		"method": "GET",
 		"path": "/mws/v1/tags",
 		"class": "MWStake\\MediaWiki\\Component\\GenericTagHandler\\Rest\\ListTagsHandler",
-		"services": [ "MWStake.GenericTagHandler.TagFactory" ]
+		"services": [ "MWStake.GenericTagHandler.TagFactory", "MWStake.InputProcessor.Factory" ]
 	},
 	{
 		"path": "/mws/v1/tags/parse/{tag}",

@@ -4,6 +4,7 @@ namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
 use Exception;
 use Html;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -22,12 +23,12 @@ class TagRenderer {
 		private readonly ParserFactory  $parserFactory,
 		private readonly InputProcessor $inputProcessor,
 		private readonly ITag           $tag,
-		private readonly ITagHandler	$tagHandler
+		private readonly MediaWikiServices $services
 	) {
 	}
 
 	/**
-	 * @param string $input
+	 * @param string|null $input
 	 * @param array $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
@@ -35,6 +36,7 @@ class TagRenderer {
 	 * @throws Exception
 	 */
 	public function doRender( ?string $input, array $args, Parser $parser, PPFrame $frame ): array|string {
+		$tagHandler = $this->tag->getHandler( $this->services );
 		$processedInput = $this->processInput( $input, $parser, $frame );
 		$status = $this->validateParams( $args );
 		if ( $status->isGood() ) {
@@ -49,12 +51,11 @@ class TagRenderer {
 			return $this->showErrors( $errorMessages, $parser );
 		}
 
+		$content = $tagHandler->getRenderedContent( $processedInput, $processedParams, $parser, $frame );
 		$modules = $this->tag->getResourceLoaderModules();
 		if ( is_array( $modules ) ) {
 			$parser->getOutput()->addModules( $modules );
 		}
-
-		$content = $this->tagHandler->getRenderedContent( $processedInput, $processedParams, $parser, $frame );
 
 		$wrapperTag = $this->tag->getContainerElementName();
 		if ( $wrapperTag ) {
@@ -103,6 +104,9 @@ class TagRenderer {
 	 */
 	private function validateParams( array $args ): StatusValue {
 		$processors = $this->tag->getParamDefinition();
+		if ( !$processors ) {
+			return StatusValue::newGood( [] );
+		}
 		return $this->inputProcessor->process( $processors, $args );
 	}
 

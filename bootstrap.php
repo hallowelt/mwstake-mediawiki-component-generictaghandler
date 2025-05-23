@@ -4,7 +4,7 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION' ) ) {
 	return;
 }
 
-define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.0' );
+define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.1' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 	->register( 'generictaghandler', static function () {
@@ -13,6 +13,9 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 		$GLOBALS['wgMessagesDirs']['mwstake-component-generictaghandler'] = __DIR__ . '/i18n';
 
 		$GLOBALS['wgHooks']['ParserFirstCallInit'][] = function ( \Parser $parser ) {
+			if ( MW_ENTRY_POINT === 'load' ) {
+				return true;
+			}
 			$services = \MediaWiki\MediaWikiServices::getInstance();
 			/** @var \MWStake\MediaWiki\Component\GenericTagHandler\TagFactory $factory */
 			$factory = $services->getService( 'MWStake.GenericTagHandler.TagFactory' );
@@ -27,7 +30,6 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 
 			return true;
 		};
-
 		$GLOBALS['mwsgGenericTagRegistry'] = [];
 
 		$restFilePath = wfRelativePath( __DIR__ . '/rest-routes.json', $GLOBALS['IP'] );

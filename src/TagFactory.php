@@ -119,10 +119,9 @@ class TagFactory {
 	 * @return TagRenderer
 	 */
 	public function makeTagRendererForTag( ITag $tag ): TagRenderer {
-		$tagHandler = $tag->getHandler( $this->services );
 		return $this->objectFactory->createObject( [
 			'class' => TagRenderer::class,
-			'args' => [ $tag, $tagHandler ],
+			'args' => [ $tag, $this->services ],
 			'services' => [ 'ParserFactory', 'MWStake.InputProcessor' ]
 		] );
 	}
