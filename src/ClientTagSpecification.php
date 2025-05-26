@@ -15,13 +15,15 @@ class ClientTagSpecification implements JsonSerializable {
 	 * @param IFormSpecification|FormLoaderSpecification|null $formSpecification
 	 * @param Message $menuMessage
 	 * @param string|null $icon
+	 * @param bool $hideMainInput
 	 */
 	public function __construct(
 		private readonly string $classname,
 		private readonly Message $description,
 		private readonly IFormSpecification|FormLoaderSpecification|null $formSpecification,
 		private readonly Message $menuMessage,
-		private readonly ?string $icon = null
+		private readonly ?string $icon = null,
+		private readonly bool $hideMainInput = true
 	) {}
 
 	/**
@@ -44,6 +46,7 @@ class ClientTagSpecification implements JsonSerializable {
 			'formSpecification' => $formSpec,
 			'menuMessage' => $this->menuMessage->text(),
 			'icon' => $this->icon,
+			'hideMainInput' => $this->hideMainInput
 		];
 	}
 }

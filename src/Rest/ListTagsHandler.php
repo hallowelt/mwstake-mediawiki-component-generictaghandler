@@ -36,7 +36,7 @@ class ListTagsHandler extends SimpleHandler {
 				}
 				$validator = $this->processorFactory->createWithData( $validator['type'], $validator );
 			}
-			$paramValidators = array_filter( $paramValidators );
+			$paramValidators = array_filter( $paramValidators ?? [] );
 			$result[] = [
 				'tags' => $tag->getTagNames(),
 				'hasContent' => $tag->hasContent(),
