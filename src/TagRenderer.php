@@ -10,8 +10,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Message;
 use MWStake\MediaWiki\Component\InputProcessor\Runner as InputProcessor;
-use OOUI\MessageWidget;
 use OOUI\HtmlSnippet;
+use OOUI\MessageWidget;
 use Parser;
 use ParserOptions;
 use PPFrame;
@@ -20,9 +20,9 @@ use StatusValue;
 
 class TagRenderer {
 	public function __construct(
-		private readonly ParserFactory  $parserFactory,
+		private readonly ParserFactory $parserFactory,
 		private readonly InputProcessor $inputProcessor,
-		private readonly ITag           $tag,
+		private readonly ITag $tag,
 		private readonly MediaWikiServices $services
 	) {
 	}
@@ -69,7 +69,7 @@ class TagRenderer {
 
 	public function render( string $input, array $args, Title $title, ?UserIdentity $forUser = null ) {
 		$parser = $this->parserFactory->create();
-		$parser->setPage( $title  );
+		$parser->setPage( $title );
 		if ( $forUser ) {
 			$parser->setUser( $forUser );
 			$parser->setOptions( ParserOptions::newFromUser( $forUser ) );
@@ -157,6 +157,5 @@ class TagRenderer {
 			'type' => 'error'
 		] );
 		return $message->toString();
-
 	}
 }

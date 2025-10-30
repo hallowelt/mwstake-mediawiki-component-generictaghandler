@@ -24,7 +24,8 @@ class TagFactory {
 		private readonly Config $mwsgConfig,
 		private readonly ObjectFactory $objectFactory,
 		private readonly MediaWikiServices $services
-	) {}
+	) {
+	}
 
 	/**
 	 *
@@ -74,7 +75,7 @@ class TagFactory {
 				'MWStakeGenericTagHandlerInitTags changed parameter value to a non-array'
 			);
 		}
-		array_walk( $this->tags, function ( $tag ) {
+		array_walk( $this->tags, static function ( $tag ) {
 			if ( !$tag instanceof ITag ) {
 				throw new RuntimeException(
 					'MWStakeGenericTagHandlerInitTags hook added an object of type '

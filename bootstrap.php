@@ -8,11 +8,10 @@ define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.2' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 	->register( 'generictaghandler', static function () {
-
 		$GLOBALS['wgServiceWiringFiles'][] = __DIR__ . '/includes/ServiceWiring.php';
 		$GLOBALS['wgMessagesDirs']['mwstake-component-generictaghandler'] = __DIR__ . '/i18n';
 
-		$GLOBALS['wgHooks']['ParserFirstCallInit'][] = function ( \Parser $parser ) {
+		$GLOBALS['wgHooks']['ParserFirstCallInit'][] = static function ( \Parser $parser ) {
 			if ( MW_ENTRY_POINT === 'load' ) {
 				return true;
 			}

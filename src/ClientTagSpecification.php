@@ -24,7 +24,8 @@ class ClientTagSpecification implements JsonSerializable {
 		private readonly Message $menuMessage,
 		private readonly ?string $icon = null,
 		private readonly bool $hideMainInput = true
-	) {}
+	) {
+	}
 
 	/**
 	 * @return mixed
