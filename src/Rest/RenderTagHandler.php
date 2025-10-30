@@ -56,6 +56,7 @@ class RenderTagHandler extends SimpleHandler {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'tag' => [

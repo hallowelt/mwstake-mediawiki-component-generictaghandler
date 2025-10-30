@@ -67,6 +67,13 @@ class TagRenderer {
 		];
 	}
 
+	/**
+	 * @param string $input
+	 * @param array $args
+	 * @param Title $title
+	 * @param UserIdentity|null $forUser
+	 * @return array|string
+	 */
 	public function render( string $input, array $args, Title $title, ?UserIdentity $forUser = null ) {
 		$parser = $this->parserFactory->create();
 		$parser->setPage( $title );
