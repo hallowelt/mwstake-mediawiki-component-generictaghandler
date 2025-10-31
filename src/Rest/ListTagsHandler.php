@@ -40,8 +40,8 @@ class ListTagsHandler extends SimpleHandler {
 
 			$tagSpec = $tag->getClientTagSpecification()?->jsonSerialize() ?? [];
 			if ( isset( $tagSpec['formSpecification'] )
-				&& isset($tagSpec['formSpecification']['definition'] )
-				&& isset($tagSpec['formSpecification']['definition']['items'] )
+				&& isset( $tagSpec['formSpecification']['definition'] )
+				&& isset( $tagSpec['formSpecification']['definition']['items'] )
 			) {
 				foreach ( $tagSpec['formSpecification']['definition']['items'] as &$item ) {
 					if ( !isset( $item['labelAlign'] ) ) {
