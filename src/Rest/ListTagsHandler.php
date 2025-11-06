@@ -37,11 +37,24 @@ class ListTagsHandler extends SimpleHandler {
 				$validator = $this->processorFactory->createWithData( $validator['type'], $validator );
 			}
 			$paramValidators = array_filter( $paramValidators ?? [] );
+
+			$tagSpec = $tag->getClientTagSpecification()?->jsonSerialize() ?? [];
+			if ( isset( $tagSpec['formSpecification'] )
+				&& isset( $tagSpec['formSpecification']['definition'] )
+				&& isset( $tagSpec['formSpecification']['definition']['items'] )
+			) {
+				foreach ( $tagSpec['formSpecification']['definition']['items'] as &$item ) {
+					if ( !isset( $item['labelAlign'] ) ) {
+						$item['labelAlign'] = 'top';
+					}
+				}
+			}
+
 			$result[] = [
 				'tags' => $tag->getTagNames(),
 				'hasContent' => $tag->hasContent(),
 				'paramDefinition' => $paramValidators,
-				'clientSpecification' => $tag->getClientTagSpecification(),
+				'clientSpecification' => $tagSpec
 			];
 		}
 
