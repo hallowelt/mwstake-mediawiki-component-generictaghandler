@@ -4,7 +4,7 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION' ) ) {
 	return;
 }
 
-define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.3' );
+define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '1.0.4' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 	->register( 'generictaghandler', static function () {
@@ -12,7 +12,7 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 		$GLOBALS['wgMessagesDirs']['mwstake-component-generictaghandler'] = __DIR__ . '/i18n';
 
 		$GLOBALS['wgHooks']['ParserFirstCallInit'][] = static function ( \Parser $parser ) {
-			if ( MW_ENTRY_POINT === 'load' ) {
+			if ( MW_ENTRY_POINT === 'load' || defined( 'MW_QUIBBLE_CI' ) ) {
 				return true;
 			}
 			$services = \MediaWiki\MediaWikiServices::getInstance();
