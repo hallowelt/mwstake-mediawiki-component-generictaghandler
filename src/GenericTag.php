@@ -36,6 +36,13 @@ abstract class GenericTag implements ITag {
 	 * @inheritDoc
 	 */
 	public function shouldParseInput(): bool {
-		return false;
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function shouldParseArguments(): bool {
+		return true;
 	}
 }
