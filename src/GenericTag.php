@@ -27,7 +27,7 @@ abstract class GenericTag implements ITag {
 
 	/**
 	 * Usually tags want to show dynamic content
-	 * @return boolean
+	 * @return bool
 	 */
 	public function shouldDisableParserCache(): bool {
 		return true;

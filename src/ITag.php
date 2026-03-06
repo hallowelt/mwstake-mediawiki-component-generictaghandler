@@ -40,7 +40,7 @@ interface ITag {
 	public function getResourceLoaderModuleStyles(): ?array;
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function shouldDisableParserCache(): bool;
 

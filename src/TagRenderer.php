@@ -62,7 +62,7 @@ class TagRenderer {
 			$parser->getOutput()->addModuleStyles( $moduleStyles );
 		}
 		if ( $this->tag->shouldDisableParserCache() ) {
-			$parser->getOutput()->updateCacheExpiry(0);
+			$parser->getOutput()->updateCacheExpiry( 0 );
 		}
 
 		$wrapperTag = $this->tag->getContainerElementName();
