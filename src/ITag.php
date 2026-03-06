@@ -50,6 +50,11 @@ interface ITag {
 	public function shouldParseInput(): bool;
 
 	/**
+	 * @return bool
+	 */
+	public function shouldParseArguments(): bool;
+
+	/**
 	 * @param MediaWikiServices $services
 	 * @return ITagHandler
 	 */

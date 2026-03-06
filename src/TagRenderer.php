@@ -38,6 +38,7 @@ class TagRenderer {
 	public function doRender( ?string $input, array $args, Parser $parser, PPFrame $frame ): array|string {
 		$tagHandler = $this->tag->getHandler( $this->services );
 		$processedInput = $this->processInput( $input, $parser, $frame );
+		$args = $this->processArgs( $args, $parser, $frame );
 		$status = $this->validateParams( $args );
 		if ( $status->isGood() ) {
 			$processedParams = $status->getValue();
@@ -102,6 +103,17 @@ class TagRenderer {
 		}
 
 		return $input;
+	}
+
+	private function processArgs( array $args, Parser $parser, PPFrame $frame ): array {
+		if ( !$this->tag->shouldParseArguments() ) {
+			return $args;
+		}
+		$processedArgs = [];
+		foreach ( $args as $key => $value ) {
+			$processedArgs[$key] = $parser->recursiveTagParse( $value, $frame );
+		}
+		return $processedArgs;
 	}
 
 	/**
