@@ -57,6 +57,13 @@ class TagRenderer {
 		if ( is_array( $modules ) ) {
 			$parser->getOutput()->addModules( $modules );
 		}
+		$moduleStyles = $this->tag->getResourceLoaderModuleStyles();
+		if ( is_array( $moduleStyles ) ) {
+			$parser->getOutput()->addModuleStyles( $moduleStyles );
+		}
+		if ( $this->tag->shouldDisableParserCache() ) {
+			$parser->getOutput()->updateCacheExpiry( 0 );
+		}
 
 		$wrapperTag = $this->tag->getContainerElementName();
 		if ( $wrapperTag ) {
