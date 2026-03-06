@@ -2,7 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;

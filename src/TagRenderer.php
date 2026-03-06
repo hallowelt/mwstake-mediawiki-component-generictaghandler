@@ -3,19 +3,19 @@
 namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
 use Exception;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\PPFrame;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Message;
 use MWStake\MediaWiki\Component\InputProcessor\Runner as InputProcessor;
 use OOUI\HtmlSnippet;
 use OOUI\MessageWidget;
-use Parser;
-use ParserOptions;
-use PPFrame;
-use Sanitizer;
 use StatusValue;
 
 class TagRenderer {
