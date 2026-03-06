@@ -35,6 +35,16 @@ interface ITag {
 	public function getResourceLoaderModules(): ?array;
 
 	/**
+	 * @return array|null
+	 */
+	public function getResourceLoaderModuleStyles(): ?array;
+
+	/**
+	 * @return boolean
+	 */
+	public function shouldDisableParserCache(): bool;
+
+	/**
 	 * @return MarkerType
 	 */
 	public function getMarkerType(): MarkerType;
