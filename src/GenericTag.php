@@ -19,6 +19,21 @@ abstract class GenericTag implements ITag {
 	}
 
 	/**
+	 * @return array|null
+	 */
+	public function getResourceLoaderModuleStyles(): ?array {
+		return [];
+	}
+
+	/**
+	 * Usually tags want to show dynamic content
+	 * @return bool
+	 */
+	public function shouldDisableParserCache(): bool {
+		return true;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getMarkerType(): MarkerType {
