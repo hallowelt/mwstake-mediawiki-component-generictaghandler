@@ -6,6 +6,8 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Title\TitleFactory;
 use MWStake\MediaWiki\Component\GenericTagHandler\TagFactory;
+use MWStake\MediaWiki\Component\GenericTagHandler\WrapperTag;
+use Shellbox\Command\Wrapper;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class RenderTagHandler extends SimpleHandler {
@@ -40,6 +42,11 @@ class RenderTagHandler extends SimpleHandler {
 			return $this->getResponseFactory()->createJson( [
 				'error' => 'Tag not found',
 			], 404 );
+		}
+		if ( $tagToHandle instanceof WrapperTag ) {
+			return $this->getResponseFactory()->createJson( [
+				'error' => 'Cannot render wrapper tags',
+			], 400 );
 		}
 		$title = $this->titleFactory->newFromText( $bodyParams['contextTitle'] );
 		if ( !$title ) {

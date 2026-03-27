@@ -6,6 +6,7 @@ use Exception;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MWStake\MediaWiki\Component\GenericTagHandler\TagFactory;
+use MWStake\MediaWiki\Component\GenericTagHandler\WrapperTag;
 use MWStake\MediaWiki\Component\InputProcessor\IProcessor;
 use MWStake\MediaWiki\Component\InputProcessor\ProcessorFactory;
 
@@ -38,7 +39,7 @@ class ListTagsHandler extends SimpleHandler {
 			}
 			$paramValidators = array_filter( $paramValidators ?? [] );
 
-			$tagSpec = $tag->getClientTagSpecification()?->jsonSerialize() ?? [];
+			$tagSpec = $tag->getClientTagSpecification()?->jsonSerialize() ?? null;
 			if ( isset( $tagSpec['formSpecification'] )
 				&& isset( $tagSpec['formSpecification']['definition'] )
 				&& isset( $tagSpec['formSpecification']['definition']['items'] )
@@ -54,7 +55,9 @@ class ListTagsHandler extends SimpleHandler {
 				'tags' => $tag->getTagNames(),
 				'hasContent' => $tag->hasContent(),
 				'paramDefinition' => $paramValidators,
-				'clientSpecification' => $tagSpec
+				'clientSpecification' => !empty( $tagSpec ) ? $tagSpec : null,
+				'isWrapper' => $tag instanceof WrapperTag,
+				'rlModules' => $tag->getResourceLoaderModules()
 			];
 		}
 
