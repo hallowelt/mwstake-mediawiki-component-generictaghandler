@@ -2,7 +2,6 @@
 
 namespace MWStake\MediaWiki\Component\GenericTagHandler;
 
-
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\PPFrame;
 

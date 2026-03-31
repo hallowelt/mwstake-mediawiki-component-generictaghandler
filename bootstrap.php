@@ -1,7 +1,5 @@
 <?php
 
-use MWStake\MediaWiki\Component\GenericTagHandler\WrapperTag;
-
 if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION' ) ) {
 	return;
 }

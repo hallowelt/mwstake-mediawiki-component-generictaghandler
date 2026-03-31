@@ -7,7 +7,6 @@ use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Title\TitleFactory;
 use MWStake\MediaWiki\Component\GenericTagHandler\TagFactory;
 use MWStake\MediaWiki\Component\GenericTagHandler\WrapperTag;
-use Shellbox\Command\Wrapper;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class RenderTagHandler extends SimpleHandler {
