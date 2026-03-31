@@ -81,6 +81,7 @@ class TagRenderer {
 	 * @param Title $title
 	 * @param UserIdentity|null $forUser
 	 * @return array|string
+	 * @throws Exception
 	 */
 	public function render( string $input, array $args, Title $title, ?UserIdentity $forUser = null ) {
 		$parser = $this->parserFactory->create();

@@ -22,9 +22,6 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 			$factory = $services->getService( 'MWStake.GenericTagHandler.TagFactory' );
 			$tags = $factory->getAll();
 			foreach ( $tags as $tag ) {
-				if ( $tag instanceof WrapperTag ) {
-					continue;
-				}
 				$renderer = $factory->makeTagRendererForTag( $tag );
 				$tagNames = $tag->getTagNames();
 				foreach ( $tagNames as $tagName ) {

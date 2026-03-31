@@ -57,7 +57,8 @@ class ListTagsHandler extends SimpleHandler {
 				'paramDefinition' => $paramValidators,
 				'clientSpecification' => !empty( $tagSpec ) ? $tagSpec : null,
 				'isWrapper' => $tag instanceof WrapperTag,
-				'rlModules' => $tag->getResourceLoaderModules()
+				'rlModules' => $tag->getResourceLoaderModules(),
+				'containerElementName' => $tag->getContainerElementName()
 			];
 		}
 
