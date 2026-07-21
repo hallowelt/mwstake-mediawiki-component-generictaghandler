@@ -28,7 +28,6 @@ class TagFactory {
 	}
 
 	/**
-	 *
 	 * @return ITag[]
 	 */
 	public function getAll() {
