@@ -6,6 +6,7 @@ use Exception;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
@@ -167,7 +168,7 @@ class TagRenderer {
 	 * @return string
 	 */
 	private function showErrors( array $messages, Parser $parser ): string {
-		\OutputPage::setupOOUI();
+		OutputPage::setupOOUI();
 		$parser->getOutput()->setEnableOOUI( true );
 		$errorMsg = $parser->msg( 'generictaghandler-error', $this->tag->getTagNames()[0] );
 		$html = Html::openElement( 'div' );
