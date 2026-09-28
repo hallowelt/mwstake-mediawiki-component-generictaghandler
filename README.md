@@ -1,6 +1,7 @@
 # GenericTagHandler for MediaWiki
 
 ## Compatibility
+- `3.0.x` -> MediaWiki 1.47
 - \>= `1.0.x` -> MediaWiki 1.43
 
 ## Use in a MediaWiki extension
@@ -10,7 +11,7 @@ Require this component in the `composer.json` of your extension:
 ```json
 {
 	"require": {
-		"mwstake/mediawiki-component-generictaghandler": "~2"
+		"mwstake/mediawiki-component-generictaghandler": "~3"
 	}
 }
 ```
