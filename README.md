@@ -40,6 +40,29 @@ $registry = \MediaWiki\MediaWikiServices::getInstance()->getService( 'MWStake.Ge
 $registry->register( new MyTag( ... ) );
 ```
 
+## Exclude tags
+
+To disable tags for a setup without unloading their extension, configure the
+following setting in `LocalSettings.php`:
+
+```php
+$mwsgGenericTagExcludeList = [
+	'mytagname',
+];
+```
+
+The default is an empty array, which keeps all registered tags enabled. Names are
+matched case-insensitively against all names returned by `ITag::getTagNames()`.
+Matching any name excludes the entire tag, including all its aliases. Unknown names have
+no effect.
+
+The filter applies to both registry and hook registrations. Excluded tags are not
+registered with the parser or returned by the REST tag list. REST rendering returns
+the existing `404` response for unknown tags. Existing wikitext is not modified;
+excluded tags are treated as unregistered tags. Invalidate affected parser caches
+after changing this setting.
+
+
 ## VisualEditor integration (over VisualEditorPlus)
 
 You can return a `MWStake\MediaWiki\Component\GenericTagHandler\ClientTagSpecification` from your tag implementation
@@ -68,7 +91,7 @@ $formSpec = new StandaloneFormSpecification();
 				'label' => 'Is framed'
 			],
 		] );
-		
+
 ```
 
 ### With client-side defined form
@@ -92,9 +115,9 @@ mw.hook( 'ext.visualEditorPlus.tags.getTagDefinition' ).add( ( definitionData, t
 	if ( definitionData.tagname !== 'myfancytag' ) {
 		return;
     }
-	
+
 	// definition data contains the info from `ClientTagSpecification`
-	
+
 	tagDefinition = new my.class.inheriting.from.ext.visualEditorPlus.ui.tags.Definition( {
         ... data
     } );
