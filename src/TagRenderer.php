@@ -86,14 +86,14 @@ class TagRenderer {
 	 */
 	public function render( string $input, array $args, Title $title, ?UserIdentity $forUser = null ) {
 		$parser = $this->parserFactory->create();
-		$parser->setPage( $title );
 		if ( $forUser ) {
 			$parser->setUser( $forUser );
-			$parser->setOptions( ParserOptions::newFromUser( $forUser ) );
+			$options = ParserOptions::newFromUser( $forUser );
 		} else {
-			$parser->setOptions( ParserOptions::newFromAnon() );
+			$options = ParserOptions::newFromAnon();
 		}
-		$parser->resetOutput();
+		// Typed Parser properties (MW 1.47) must be initialized, which resetOutput() alone does not do
+		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
 		return $this->doRender( $input, $args, $parser, $parser->getPreprocessor()->newFrame() );
 	}
 
