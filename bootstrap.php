@@ -4,7 +4,7 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION' ) ) {
 	return;
 }
 
-define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '2.0.0' );
+define( 'MWSTAKE_MEDIAWIKI_COMPONENT_GENERICTAGHANDLER_VERSION', '3.0.1' );
 
 MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 	->register( 'generictaghandler', static function () {
@@ -30,6 +30,7 @@ MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
 			return true;
 		};
 		$GLOBALS['mwsgGenericTagRegistry'] = [];
+		$GLOBALS['mwsgGenericTagExcludeList'] ??= [];
 
 		$restFilePath = wfRelativePath( __DIR__ . '/rest-routes.json', $GLOBALS['IP'] );
 		$GLOBALS['wgRestAPIAdditionalRouteFiles'][] = $restFilePath;

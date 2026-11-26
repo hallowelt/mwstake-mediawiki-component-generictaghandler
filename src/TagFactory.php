@@ -43,6 +43,14 @@ class TagFactory {
 			$this->tags = [];
 			$this->initFromRegistry();
 			$this->initFromHook();
+			$excludedNames = array_map( 'strtolower', $this->mwsgConfig->get( 'GenericTagExcludeList' ) );
+			$this->tags = array_values( array_filter(
+				$this->tags,
+				static fn ( ITag $tag ) => !array_intersect(
+					array_map( 'strtolower', $tag->getTagNames() ),
+					$excludedNames
+				)
+			) );
 		}
 	}
 
